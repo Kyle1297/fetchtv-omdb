@@ -1,6 +1,2 @@
-# environment
 /env
 #.env
-
-# db
-db.sqlite3
