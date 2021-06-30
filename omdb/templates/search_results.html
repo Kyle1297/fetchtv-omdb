@@ -1,0 +1,56 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'omdb/style.css' %}" />
+
+<h1>Search Results</h1>
+
+{% include "omdb_form.html" %} 
+
+{% if videos|length > 0 %} 
+
+	{% load helpers %} 
+
+	{% with videos|first|get_object_fields as video_fields %}
+
+	<table>
+		<thead>
+			<tr>
+				{% for field in video_fields %}
+					<th>
+						{{ field.capitalize }}
+					</th>
+				{% endfor %}
+				<th>Link</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for video in videos %}
+				<tr>
+					{% for field in video_fields %}
+						<td>
+							{{ video|getattr:field }}
+						</td>
+					{% endfor %}
+					<td><a href="{{ video.generate_imdb_link }}" target="_blank">{{ video.generate_imdb_link }}</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{% endwith %}
+
+	{% if error %}
+
+	<p class="error">While trying to fetch more results, the following error occurred: '{{ error }}'</p>
+
+	{% endif %}
+
+{% elif error %}
+
+	<p class="error">The following error occurred: '{{ error }}'</p>
+
+{% else %}
+
+	<p>We couldn't find any results that matched your search. Please try again.</p>
+
+{% endif %}

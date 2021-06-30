@@ -1,0 +1,32 @@
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5px;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
